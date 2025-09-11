@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Tab Counter Debug</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2 { margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: left; }
+    th { background: #eee; }
+  </style>
+</head>
+<body>
+  <h2>Tab Counter Debug</h2>
+  <p><strong>Current Tabs:</strong> <span id="currentCount">0</span></p>
+  <p><strong>Most Tabs Today:</strong> <span id="mostToday">0</span></p>
+  <p><strong>Most Tabs Ever:</strong> <span id="mostEver">0</span></p>
+
+  <h3>Logs</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Action</th>
+        <th>Change</th>
+        <th>Tabs After</th>
+      </tr>
+    </thead>
+    <tbody id="logTable"></tbody>
+  </table>
+
+  <script src="debug.js"></script>
+</body>
+</html>

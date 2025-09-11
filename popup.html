@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tab Counter</title>
+  <style>
+    body { font-family: sans-serif; padding: 1rem; }
+    p { margin: 0.5rem 0; }
+  </style>
+</head>
+<body>
+  <h3>Tab Counter</h3>
+  <p>Current window tabs: <span id="current"></span></p>
+  <p>Most tabs today: <span id="maxToday"></span></p>
+  <p>Most tabs ever: <span id="maxEver"></span></p>
+  <button id="debugBtn" type="button" onclick="window.open('debug.html','_blank')">Open Debug Page</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>

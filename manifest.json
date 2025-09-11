@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Borderify",
-  "version": "1.0",
+  "name": "Tab Stats PHD",
+  "version": "1.2",
 
-  "description": "Adds a red border to all webpages matching mozilla.org.",
+  "description": "N/A",
 
   "icons": {
     "48": "icons/border-48.png"
@@ -14,5 +14,23 @@
       "matches": ["*://*.mozilla.org/*"],
       "js": ["borderify.js"]
     }
-  ]
+  ],
+
+  "permissions": ["tabs", "storage"],
+
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "Tab Counter"
+  },
+
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+
+  "applications": {
+    "gecko": {
+      "id": "tab-stats-PHD@dev.local"
+    }
+  }
 }
