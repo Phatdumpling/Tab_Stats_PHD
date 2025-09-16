@@ -1,29 +1,35 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Tab Stats PHD",
   "version": "1.2",
-
-  "description": "N/A",
-
+  "description": "Track how many tabs you have across all windows over time! The developer of this extension uses 300-500 tabs in 1 window every day.",
+  
   "icons": {
-    "48": "icons/border-48.png"
+    "64": "icons/tabstats-icon-64.png"
   },
 
   "permissions": ["tabs", "storage"],
 
-  "browser_action": {
+  "action": {
     "default_popup": "popup.html",
-    "default_title": "Tab Counter"
+    "default_title": "Tab Counter",
+    "default_icon": {
+      "64": "icons/tabstats-icon-64.png"
+    }
   },
 
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+  "scripts": ["background.js"]
   },
 
-  "applications": {
+  "browser_specific_settings": {
     "gecko": {
-      "id": "tab-stats-PHD@dev.local"
+      "id": "tab-stats-PHD@phatdumpling.net",
+      "strict_min_version": "109.0",
+      "data_collection_permissions": {
+        "required": ["browsingActivity"],
+        "optional": []
+      }
     }
   }
 }

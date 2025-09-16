@@ -52,59 +52,46 @@ let chart = null;
 function updateChart(logs, dailyRecords, period = "1M") {
   const data = filterData(logs, dailyRecords, period);
 
-  // Use Date objects for Chart.js time axis
   const labels = data.map(d => d.date);
   const values = data.map(d => d.value);
 
-  // Destroy existing chart if any
   if (chart) chart.destroy();
 
-  // Determine x-axis unit and max ticks dynamically
   let xUnit = "day";
   let maxTicks = 10;
-
-  switch (period) {
-    case "1D":
-      xUnit = "hour";
-      maxTicks = 8;
-      break;
-    case "5D":
-      xUnit = "day";
-      maxTicks = 10;
-      break;
-    case "1M":
-      xUnit = "day";
-      maxTicks = 15;
-      break;
-    case "6M":
-      xUnit = "day";
-      maxTicks = 20;
-      break;
-    case "1Y":
-    case "Max":
-      xUnit = "month";
-      maxTicks = 12;
-      break;
+  switch(period) {
+    case "1D": xUnit="hour"; maxTicks=8; break;
+    case "5D": xUnit="day"; maxTicks=10; break;
+    case "1M": xUnit="day"; maxTicks=15; break;
+    case "6M": xUnit="day"; maxTicks=20; break;
+    case "Max": xUnit="month"; maxTicks=12; break;
   }
 
-  // Configure tooltip
+  // Determine line color: green if first > last, else red
+  const lineColor = (values[0] < values[values.length - 1]) ? 'green' : 'red';
+
+  // Create gradient for fill
+  const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
+  gradient.addColorStop(0, lineColor);
+  gradient.addColorStop(1, 'white');
+
   const tooltipOptions = {
     callbacks: {
       title: (tooltipItems) => labels[tooltipItems[0].dataIndex].toLocaleString(),
       label: (tooltipItem) => `Tabs: ${tooltipItem.raw}`
-    }
+    },
+    // Force solid circles on tooltip
+    pointStyle: 'circle'
   };
 
-  // Configure interaction (hover) behavior
   const interactionOptions = {
     mode: 'nearest',
     axis: 'x',
     intersect: period === "1D" || period === "5D"
   };
 
-  // Prepare dataset for linear x-axis if 1D or 5D
   const chartData = (period === "1D" || period === "5D")
-    ? data.map((d, i) => ({ x: i, y: d.value })) // linear spacing
+    ? data.map((d, i) => ({ x: i, y: d.value }))
     : values;
 
   chart = new Chart(ctx, {
@@ -114,11 +101,13 @@ function updateChart(logs, dailyRecords, period = "1M") {
       datasets: [{
         label: "Tabs Count",
         data: chartData,
-        borderColor: "blue",
-        fill: false,
-        tension: 0.1,
-        pointRadius: 3,
-        pointHoverRadius: 6
+        borderColor: lineColor,    // Line color
+        backgroundColor: gradient, // Fill under line
+        fill: true,
+        tension: 0,                // Hard, straight line
+        pointRadius: 2,            // Smaller points
+        pointHoverRadius: 5,
+        pointStyle: 'circle'
       }]
     },
     options: {
@@ -151,6 +140,7 @@ function updateChart(logs, dailyRecords, period = "1M") {
     }
   });
 }
+
 
 
 // --- Filter buttons setup ---
