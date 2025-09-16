@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="styles/stats_style.css">
+</head>
+<body>
+  <h3>Daily Records</h3>
+  <div id="filters">
+    <button data-period="1D">1 day</button>
+    <button data-period="5D">5 days</button>
+    <button data-period="1M" class="active">1 month</button>
+    <button data-period="6M">6 months</button>
+    <button data-period="Max">Max</button>
+  </div>
+  <div class="chart-container">
+    <canvas id="recordsChart" width="400" height="200"></canvas>
+  </div>
+  <script src="libs/luxon.min.js"></script>
+  <script src="libs/chart.umd.js"></script>
+  <script src="libs/chartjs-adapter-luxon.min.js"></script>
+  <script src="stats.js"></script>
+</body>
+</html>

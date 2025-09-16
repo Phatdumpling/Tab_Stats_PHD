@@ -9,13 +9,6 @@
     "48": "icons/border-48.png"
   },
 
-  "content_scripts": [
-    {
-      "matches": ["*://*.mozilla.org/*"],
-      "js": ["borderify.js"]
-    }
-  ],
-
   "permissions": ["tabs", "storage"],
 
   "browser_action": {

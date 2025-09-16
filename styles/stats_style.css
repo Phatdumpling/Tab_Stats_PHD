@@ -1,0 +1,33 @@
+.chart-container {
+  width: 600px;   /* max width */
+  height: 400px;  /* max height */
+  /* Optional: maintain aspect ratio */
+  position: relative;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+body {
+    font-family: sans-serif;
+    padding: 10px;
+}
+
+/* Button styles inside #filters container */
+#filters button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+    cursor: pointer;
+}
+
+/* Active button state */
+#filters button.active {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
